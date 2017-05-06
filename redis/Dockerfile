@@ -29,6 +29,7 @@ RUN addgroup -S redis && adduser -S -G redis redis \
  && apk del .build-deps
 
 RUN mkdir "/data" && chown redis:redis "/data"
+
 VOLUME "/data"
 WORKDIR "/data"
 

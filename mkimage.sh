@@ -148,14 +148,14 @@ make_image() {
   version=${tag}
   checksum=$(grep " redis-$version.tar.gz\$" redis/SHASUMS256.txt)
 
-  cat ${mkimg_dir}/Dockerfile | \
+  cat ${mkimg_dir}/redis/Dockerfile | \
     sed -e "s@\${base_image}@${base_image}@" | \
     sed -e "s@\${version}@${version}@" | \
     sed -e "s@\${checksum}@${checksum}@" \
     > ${tmp}/Dockerfile
 
   # Copy necessary build files.
-  cp ${mkimg_dir}/go-wrapper ${tmp}/go-wrapper
+  cp ${mkimg_dir}/redis/docker-entrypoint.sh ${tmp}/docker-entrypoint.sh
 
   # Docker build.
   docker build \
