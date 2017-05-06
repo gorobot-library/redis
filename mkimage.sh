@@ -159,7 +159,6 @@ make_image() {
 
   # Docker build.
   docker build \
-    --build-arg GOLANG_VERSION=${tag} \
     -t ${build_name} ${tmp}
   docker_exit_code=$?
 
