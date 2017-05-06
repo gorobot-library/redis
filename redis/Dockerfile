@@ -20,9 +20,6 @@ RUN addgroup -S redis && adduser -S -G redis redis \
  && tar -xzf "redis-$REDIS_VERSION.tar.gz" -C "/usr/src/redis" --strip-components=1 \
  && rm "redis-$REDIS_VERSION.tar.gz" \
  && cd /usr/src/redis \
- && grep -q '^#define CONFIG_DEFAULT_PROTECTED_MODE 1$' /usr/src/redis/src/server.h \
- && sed -ri 's!^(#define CONFIG_DEFAULT_PROTECTED_MODE) 1$!\1 0!' /usr/src/redis/src/server.h \
- && grep -q '^#define CONFIG_DEFAULT_PROTECTED_MODE 0$' /usr/src/redis/src/server.h \
  && make -j$(getconf _NPROCESSORS_ONLN) \
  && make install \
  && rm -r /usr/src/redis \
