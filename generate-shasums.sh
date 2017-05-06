@@ -11,8 +11,8 @@ usage() {
 	cat 1>&2 <<EOUSAGE
 This script generates the SHASUMS256.txt file used by the Dockerfile.
 
-   usage: $script
-      ie: $script   - Generate SHASUMS256.txt
+   usage: ./$script
+      ie: ./$script   - Generate SHASUMS256.txt
 
 EOUSAGE
 exit 1
@@ -49,7 +49,7 @@ generate_shasums() {
   # NOTE: Currently, the script does not replace the temporary directory in the
   # generated `SHASUMS256.txt` file. It needs to be removed manually before
   # committing.
-  sed -e "s@${tmp}@@g" ${shasum_file}
+  sed -e "s@${tmp}/@@g" ${shasum_file}
 }
 
 # Parse options/flags.
